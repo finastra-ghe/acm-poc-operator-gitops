@@ -1,0 +1,11 @@
+acm-tenant-gitops:
+  name: fusion-operate
+  channels:
+    infra:
+      type: Git
+      pathname: https://github.com/finastra-ghe/acm-poc-fusion-operate-gitops
+      secretRef:
+        name: acm-github-token
+    bitnami-helm:
+      type: HelmRepo
+      pathname: https://charts.bitnami.com/bitnami

@@ -1,0 +1,13 @@
+{{ $global := . }}
+{{- range $k, $v := .Values.channels -}}
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: Channel
+metadata:
+  namespace: {{ include "chart.name" $global }}-ch-{{ $k }}
+  name: channel
+  labels:
+    acm-app: {{ include "chart.name" $global }}-gitops
+spec:
+  {{- toYaml $v | nindent 2 }}
+{{ end }}
