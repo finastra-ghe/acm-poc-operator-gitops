@@ -9,3 +9,6 @@ acm-tenant-gitops:
     bitnami-helm:
       type: HelmRepo
       pathname: https://charts.bitnami.com/bitnami
+    chartmuseum-helm:
+      type: HelmRepo
+      pathname: https://chartmuseum.github.io/charts
