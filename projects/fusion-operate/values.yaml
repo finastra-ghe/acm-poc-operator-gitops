@@ -6,9 +6,6 @@ acm-tenant-gitops:
       pathname: https://github.com/finastra-ghe/acm-poc-fusion-operate-gitops
       secretRef:
         name: acm-github-token
-    bitnami-helm:
+    helm:
       type: HelmRepo
-      pathname: https://charts.bitnami.com/bitnami
-    chartmuseum-helm:
-      type: HelmRepo
-      pathname: https://chartmuseum.github.io/charts
+      pathname: https://finastra-ghe.github.io/acm-poc-system-charts/
