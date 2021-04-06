@@ -1,5 +1,42 @@
 # ACM Operator repo definitions
 
+## What is ACM
+
+### Why ACM
+
+### Introduction to ACM
+
+## Onboarding
+
+### Cluster onboarding
+
+* [ACM docs](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.1/html/manage_cluster/importing-a-target-managed-cluster-to-the-hub-cluster#importing-a-managed-cluster-with-the-cli )
+* [Onboarding script](https://dev.azure.com/fusionfabric/FusionOperate/_git/acm-automation)
+
+### What does it mean to onboard a Team?
+
+1. New `git` repo created in AzureDevOps, for example `ffdc-gitops` or `fusion-operate-gitops`
+1. ACM ServicePrincipal/User granted RO permisions to the repo
+1. ACM ServicePrincipal/User credentials added as a secret in a channel namespace. See [examples](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.2/html-single/manage_applications/index#channel-samples)
+1. New tenant added to [projects](/projects) folder
+    1. `gitops` repository defined in `channels` section
+    1. `helm` repository defined in `channels` section
+1. Install tenant helm chart in ACM ARO cluster
+    ```bash
+    make deploy <project_name>
+    ```
+1. Respective team group granted viwer permissions to ACM UI
+
+### What does it mean to deploy application?
+
+
+### Mappings
+* Zone -> Cluster
+* Tenant -> Namespace
+
+
+---
+
 ## Use
 
 ```bash
@@ -28,7 +65,6 @@ Notes:
 
 * https://github.com/open-cluster-management/rhacm-docs/blob/a4ef3e17e50cd71a0e82c256e753f795c5de1588/manage_cluster/master.html#L2963
 * https://github.com/open-cluster-management/rhacm-docs/blob/2.1_prod/manage_applications/subscribe_git_resources.adoc
-
 
 ### Deploy to multiple namespaces
 
@@ -87,3 +123,10 @@ subjects:
     * Cons:
         * service account management cost: addition/updates/deletion
 3. Team has gitops repo per namespace, like `ffdc-core-gitops` or `ffdc-devportal-gitops`
+
+
+## Notes:
+oc label subscriptions.apps.open-cluster-management.io kubernetes-external-secrets-dev-westeu-1 reconcile=true
+
+How to import running applications?
+How to reconcile applications deployed not by ACM
